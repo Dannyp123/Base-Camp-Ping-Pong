@@ -54,7 +54,7 @@ function seeData(url = "") {
     }
   }).then(response => response.json());
 }
-function startGame(url = "", data = {}) {
+function postGame(url = "", data = {}) {
   return fetch(url, {
     method: "POST",
     headers: {
@@ -66,14 +66,22 @@ function startGame(url = "", data = {}) {
 }
 
 function startingGame() {
-  playerOne = document.getElementById("playerOneId").value;
-  playerTwo = document.getElementById("playerTwoId").value;
-  startBtn = document.getElementById("startGameBtn");
+  var playerOne = document.getElementById("playerOneId").value;
+  var playerTwo = document.getElementById("playerTwoId").value;
+  var startBtn = document.getElementById("startGameBtn");
   startBtn.addEventListener("click", function() {
-    startGame("https://bcca-pingpong.herokuapp.com/api/new-game", {
-      "player-1": playerOne,
-      "player-2": playerTwo
-    });
+    postGame("https://bcca-pingpong.herokuapp.com/api/new-game/", {
+      player_1: playerOne,
+      player_2: playerTwo
+    })
+      .then(data => {
+        console.log(JSON.stringify(data));
+        PAGE_DATA.game = data;
+        console.log(PAGE_DATA);
+      })
+      .catch(error => console.error(error));
+    document.getElementById("playerForms").hidden = true;
+    document.getElementById("userList").hidden = true;
   });
 }
 
@@ -98,22 +106,9 @@ function seeUsers() {
   });
 }
 
-function playerInputs() {
-  var playerOne = document.getElementById("playerOneId").value;
-  var playerTwo = document.getElementById("playerTwoId").value;
-  var inputBtn = document.getElementById("startGameBtn");
-
-  inputBtn.addEventListener("click", function() {
-    var usernameOneArea = document.getElementById("usernameOneArea");
-    var usenameTwoArea = document.getElementById("usernameTwoArea");
-    usernameOneArea.innerText = playerOne;
-    usenameTwoArea.innerText = playerTwo;
-  });
-}
-
 // window.location = '#home'
 
 signUp();
 login();
 seeUsers();
-playerInputs();
+startingGame();
