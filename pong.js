@@ -1,4 +1,6 @@
 var PAGE_DATA = {};
+var n = 0;
+var r = 0;
 
 function signUp() {
   btn = document.getElementById("signUpBtn");
@@ -106,9 +108,27 @@ function seeUsers() {
   });
 }
 
-// window.location = '#home'
+function scoreCounter(n) {
+  var leftButton = document.getElementById("leftBtn");
+  var topTextArea = document.getElementById("scoreHeader");
+  leftButton.addEventListener("click", function() {
+    topTextArea.innerText = n = n + 1;
+  });
+}
+
+function scoreCounterRight(r) {
+  var rightBtn = document.getElementById("rightBtn");
+  var bottmTextArea = document.getElementById("scoreFooter");
+  rightBtn.addEventListener("click", function() {
+    bottmTextArea.innerText = r = r + 1;
+  });
+}
+
+window.location = "#home";
 
 signUp();
 login();
 seeUsers();
 startingGame();
+scoreCounter(n);
+scoreCounterRight(r);
