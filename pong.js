@@ -87,6 +87,7 @@ function seeUsers() {
       PAGE_DATA.users = data;
       PAGE_DATA.users.forEach(user => {
         document.getElementById("playerForms").hidden = false;
+        document.getElementById("startGameBtn").hidden = false;
         users.hidden = false;
         users.innerText += `ID: ${user.id} \n\tUser: ${user.username}\n\n`;
         btn.style.display = "none";
@@ -97,8 +98,22 @@ function seeUsers() {
   });
 }
 
+function playerInputs() {
+  var playerOne = document.getElementById("playerOneId").value;
+  var playerTwo = document.getElementById("playerTwoId").value;
+  var inputBtn = document.getElementById("startGameBtn");
+
+  inputBtn.addEventListener("click", function() {
+    var usernameOneArea = document.getElementById("usernameOneArea");
+    var usenameTwoArea = document.getElementById("usernameTwoArea");
+    usernameOneArea.innerText = playerOne;
+    usenameTwoArea.innerText = playerTwo;
+  });
+}
+
 // window.location = '#home'
 
 signUp();
 login();
 seeUsers();
+playerInputs();
