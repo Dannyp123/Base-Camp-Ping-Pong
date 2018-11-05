@@ -90,16 +90,18 @@
             <input id="playerTwoId" class="playertwoInput" type="text" placeholder="Player 2 ID" required>
             <button id="startGameBtn" type="submit" class="btn btn-success">Start</button>
         </form>
-        <p class="bg-greyish border border-secondary p-3 rounded" hidden id='userList'></p>
-        <div class="scoreArea border border-secondary rounded">
-            <h3 class="scoreHeader text-center"></h3>
-            <button id="leftBtn" class="score-button btn btn-success">Add A Point</button>
-            <button id="rightBtn" class="score-button btn btn-success">Add A Point</button>
-            <div>
-                <button id="finishBtn" class="btn btn-danger mt-1 w-100">Fatality</button>
+        <div id="scoreCard" class="score-area card mt-4 mb-4">
+            <div class="card-body">
+                <h3 id="scoreHeader text-center"></h3>
+                <button id="leftBtn" class="score-button btn btn-success mt-4 mb-1 ">Add A Point</button>
+                <button id="rightBtn" class="score-button btn btn-success mb-4">Add A Point</button>
+                <h3 id="scoreFooter text-center"></h3>
+                <div>
+                    <button id="finishBtn" class="btn btn-danger mt-1 w-100">Fatality</button>
+                </div>
             </div>
         </div>
-
+        <p class="bg-greyish border border-secondary p-3 rounded" hidden id='userList'></p>
     </section>
     <div>
         <script src="pong.js"></script>
