@@ -53,6 +53,21 @@
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
-  .score-area
+#finishBtn {
+  margin-left: 32px;
+}
+
+#playerOneId {
+  width: 30%;
+}
+#playerTwoId {
+  width: 30%;
+}
+.playerForms {
+  display: flex;
+  justify-content: center;
+}
+.submitButton {
+  display: flex;
+  justify-content: center;
 }
