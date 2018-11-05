@@ -71,6 +71,9 @@ function startingGame() {
   var playerOne = document.getElementById("playerOneId").value;
   var playerTwo = document.getElementById("playerTwoId").value;
   var startBtn = document.getElementById("startGameBtn");
+  var topTextArea = document.getElementById("usernameOneArea");
+  var bottmTextArea = document.getElementById("usernameTwoArea");
+
   startBtn.addEventListener("click", function() {
     postGame("https://bcca-pingpong.herokuapp.com/api/new-game/", {
       player_1: playerOne,
@@ -80,10 +83,13 @@ function startingGame() {
         console.log(JSON.stringify(data));
         PAGE_DATA.game = data;
         console.log(PAGE_DATA);
+        topTextArea.innerText = data.player_1;
+        bottmTextArea.innerText = data.player_2;
       })
       .catch(error => console.error(error));
     document.getElementById("playerForms").hidden = true;
     document.getElementById("userList").hidden = true;
+    document.getElementById("startGameBtn").hidden = true;
   });
 }
 
