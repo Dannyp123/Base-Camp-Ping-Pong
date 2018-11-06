@@ -15,7 +15,6 @@ function signUp() {
     })
       .then(data => console.log(JSON.stringify(data)))
       .catch(error => console.error(error));
-    window.location = "#login";
   });
 }
 
@@ -164,6 +163,24 @@ function postGameScores(url = "", data = {}) {
     body: JSON.stringify(data)
   }).then(response => response.json());
 }
+
+function isPasswordValid() {
+  var password = document.getElementById("passwordSignup");
+  var passwordRepeat = document.getElementById("passwordRepeatSignUp");
+  var signUpButton = document.getElementById("signUpBtn");
+  var alert = document.getElementById("errorMessage");
+  signUpButton.addEventListener("click", function() {
+    if (passwordRepeat.value != password.value) {
+      passwordRepeat.classList.add("border-danger");
+      alert.innerText = "Passwords Must Match!";
+    } else {
+      passwordRepeat.classList.remove("border-danger");
+      passwordRepeat.classList.add("border-success");
+      window.location = "#login";
+    }
+  });
+}
+isPasswordValid();
 
 window.location = "#home";
 
