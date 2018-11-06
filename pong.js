@@ -205,16 +205,16 @@ var h = 0;
 function freeStylePlay(h) {
   var leftButton = document.getElementById("lBtn");
   var topTextArea = document.getElementById("scoreHeaders");
+  var nameOne = document.getElementById("nameOneArea");
   var nameInputOne = document.getElementById("freestyleInputOne");
-  var textAreaOne = document.getElementById("nameOneArea");
-  var areaOne = document.getElementById("winnerAreaOne");
+  var winnerAreaOne = document.querySelector(".winner");
   leftButton.addEventListener("click", function() {
     if (h <= 9) {
       topTextArea.innerText = h = h + 1;
-      textAreaOne.innerText = nameInputOne.value;
+      nameOne.innerText = nameInputOne.value;
       nameInputOne.style.display = "none";
     } else if (h === 10) {
-      areaOne.innerText = `${nameInputOne.value} WIN(S)!`;
+      winnerAreaOne.innerText = `${nameInputOne.value} WIN(S)!`;
     }
   });
 }
@@ -225,16 +225,16 @@ var g = 0;
 function freeStylePlayTwo(g) {
   var rightButton = document.getElementById("rBtn");
   var topTextArea = document.getElementById("scoreFooters");
+  var nameTwo = document.getElementById("nameTwoArea");
   var nameInputTwo = document.getElementById("freestyleInputTwo");
-  var textAreaTwo = document.getElementById("nameTwoArea");
-  var areaTwo = document.getElementById("winnerAreaTwo");
+  var winnerArea = document.querySelector(".winner");
   rightButton.addEventListener("click", function() {
     if (g <= 9) {
       topTextArea.innerText = g = g + 1;
-      textAreaTwo.innerText = nameInputTwo.value;
+      nameTwo.innerText = nameInputTwo.value;
       nameInputTwo.style.display = "none";
     } else if (g === 10) {
-      areaTwo.innerText = `${nameInputTwo.value} WIN(S)!`;
+      winnerArea.innerText = `${nameInputTwo.value} WIN(S)!`;
     }
   });
 }
