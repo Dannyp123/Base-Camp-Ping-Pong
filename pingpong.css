@@ -35,7 +35,7 @@
 }
 
 .bg-greyish {
-  background-color: rgb(232, 255, 223);
+  background-color: rgba(211, 211, 211, 0.35);
 }
 .hidden {
   display: none;
