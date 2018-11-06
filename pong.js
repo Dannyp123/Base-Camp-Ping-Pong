@@ -214,7 +214,7 @@ function freeStylePlay(h) {
       textAreaOne.innerText = nameInputOne.value;
       nameInputOne.style.display = "none";
     } else if (h === 10) {
-      areaOne.innerText = nameInputOne.value;
+      areaOne.innerText = `${nameInputOne.value} WIN(S)!`;
     }
   });
 }
@@ -234,7 +234,7 @@ function freeStylePlayTwo(g) {
       textAreaTwo.innerText = nameInputTwo.value;
       nameInputTwo.style.display = "none";
     } else if (g === 10) {
-      areaTwo.innerText = nameInputTwo.value;
+      areaTwo.innerText = `${nameInputTwo.value} WIN(S)!`;
     }
   });
 }
