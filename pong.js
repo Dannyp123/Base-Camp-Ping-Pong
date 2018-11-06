@@ -126,6 +126,7 @@ function seeUsers() {
       PAGE_DATA.users.forEach(user => {
         document.getElementById("playerForms").hidden = false;
         document.getElementById("startGameBtn").hidden = false;
+
         users.hidden = false;
         users.innerText += `ID: ${user.id} \n\tUser: ${user.username}\n\n`;
         btn.style.display = "none";
@@ -206,10 +207,15 @@ function freeStylePlay(h) {
   var topTextArea = document.getElementById("scoreHeaders");
   var nameInputOne = document.getElementById("freestyleInputOne");
   var textAreaOne = document.getElementById("nameOneArea");
+  var areaOne = document.getElementById("winnerAreaOne");
   leftButton.addEventListener("click", function() {
-    topTextArea.innerText = h = h + 1;
-    textAreaOne.innerText = nameInputOne.value;
-    nameInputOne.style.display = "none";
+    if (h <= 9) {
+      topTextArea.innerText = h = h + 1;
+      textAreaOne.innerText = nameInputOne.value;
+      nameInputOne.style.display = "none";
+    } else if (h === 10) {
+      areaOne.innerText = nameInputOne.value;
+    }
   });
 }
 freeStylePlay(h);
@@ -221,15 +227,20 @@ function freeStylePlayTwo(g) {
   var topTextArea = document.getElementById("scoreFooters");
   var nameInputTwo = document.getElementById("freestyleInputTwo");
   var textAreaTwo = document.getElementById("nameTwoArea");
+  var areaTwo = document.getElementById("winnerAreaTwo");
   rightButton.addEventListener("click", function() {
-    topTextArea.innerText = g = g + 1;
-    textAreaTwo.innerText = nameInputTwo.value;
-    nameInputTwo.style.display = "none";
+    if (g <= 9) {
+      topTextArea.innerText = g = g + 1;
+      textAreaTwo.innerText = nameInputTwo.value;
+      nameInputTwo.style.display = "none";
+    } else if (g === 10) {
+      areaTwo.innerText = nameInputTwo.value;
+    }
   });
 }
 freeStylePlayTwo(g);
 
-function finishFreestyle() {
+function finishFreestyle(h, g) {
   var btton = document.getElementById("finishButton");
   btton.addEventListener("click", function() {
     location.reload();
