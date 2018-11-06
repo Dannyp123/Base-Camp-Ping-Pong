@@ -49,16 +49,18 @@
                 <hr class='border-secondary'>
                 <div class="form-group">
                     <label for="signUpUsername">Username</label>
-                    <input type="text" class="form-control" id="usernameSignUp" required aria-describedby="emailHelp"
+                    <input type="text" class="form-control text-success" id="usernameSignUp" required aria-describedby="emailHelp"
                         placeholder="Enter Username">
                 </div>
                 <div class="form-group">
                     <label for="signUpPassword">Password</label>
-                    <input type="password" class="form-control" id="passwordSignup" required placeholder="Password">
+                    <input type="password" class="form-control text-success border" id="passwordSignup" required
+                        placeholder="Password">
                 </div>
                 <div class="form-group">
                     <label for="signUpPasswordRepeat">Password Confirm</label>
-                    <input type="password" class="form-control" id="passwordRepeatSignUp" required placeholder="Password">
+                    <input type="password" class="form-control border" id="passwordRepeatSignUp" required placeholder="Password">
+                    <p class="errorMessageArea" id="errorMessage"></p>
                 </div>
                 <button id="signUpBtn" type="submit" class="btn btn-primary">Submit</button>
             </form>
