@@ -78,7 +78,9 @@
   width: 65%;
   position: relative;
   left: 32px;
+  display: block;
 }
 .inputTwo {
   width: 65%;
+  display: block;
 }
