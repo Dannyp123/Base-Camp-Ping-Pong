@@ -5,14 +5,10 @@
 
 .nav-buttons {
   color: black;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  border-bottom: 0;
-  border-top-right-radius: 0.5rem;
 }
+
 .nav-buttons:hover {
-  color: lightgrey;
-  background-color: grey;
+  color: rgb(44, 44, 44);
 }
 
 .gold {
@@ -76,4 +72,13 @@
 .submitButton {
   display: flex;
   justify-content: center;
+}
+
+.inputOne {
+  width: 65%;
+  position: relative;
+  left: 32px;
+}
+.inputTwo {
+  width: 65%;
 }
