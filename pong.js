@@ -199,6 +199,44 @@ function isPasswordValid() {
 }
 isPasswordValid();
 
+var h = 0;
+
+function freeStylePlay(h) {
+  var leftButton = document.getElementById("lBtn");
+  var topTextArea = document.getElementById("scoreHeaders");
+  var nameInputOne = document.getElementById("freestyleInputOne").value;
+  var textAreaOne = document.getElementById("nameOneArea");
+  leftButton.addEventListener("click", function() {
+    topTextArea.innerText = h = h + 1;
+    textAreaOne.innerText = nameInputOne;
+    nameInputOne.hidden = true;
+  });
+}
+freeStylePlay(h);
+
+var g = 0;
+
+function freeStylePlayTwo(g) {
+  var rightButton = document.getElementById("rBtn");
+  var topTextArea = document.getElementById("scoreFooters");
+  var nameInputTwo = document.getElementById("freestyleInputTwo").value;
+  var textAreaTwo = document.getElementById("nameTwoArea");
+  rightButton.addEventListener("click", function() {
+    topTextArea.innerText = g = g + 1;
+    textAreaTwo.innerText = nameInputTwo;
+    nameInputTwo.hidden = true;
+  });
+}
+freeStylePlayTwo(g);
+
+function finishFreestyle() {
+  var btton = document.getElementById("finishButton");
+  btton.addEventListener("click", function() {
+    location.reload();
+  });
+}
+finishFreestyle();
+
 window.location = "#home";
 
 signUp();
