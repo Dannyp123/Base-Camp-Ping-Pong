@@ -40,9 +40,10 @@ function login() {
       .then(data => {
         console.log(JSON.stringify(data));
         PAGE_DATA.token = data.token;
+        showingWelcomeHeader();
+        window.location = "#profile";
       })
       .catch(error => console.error(error));
-    window.location = "#profile";
   });
 }
 
@@ -164,18 +165,34 @@ function postGameScores(url = "", data = {}) {
   }).then(response => response.json());
 }
 
+function showingWelcomeHeader() {
+  var welcomeArea = document.getElementById("welcomeHeader");
+  var loginInput = document.getElementById("usernameLogin").value;
+  welcomeArea.innerText = `Welcome ${loginInput}`;
+}
+
 function isPasswordValid() {
   var password = document.getElementById("passwordSignup");
   var passwordRepeat = document.getElementById("passwordRepeatSignUp");
   var signUpButton = document.getElementById("signUpBtn");
-  var alert = document.getElementById("errorMessage");
-  signUpButton.addEventListener("click", function() {
-    if (passwordRepeat.value != password.value) {
+  var error = document.getElementById("errorMessage");
+
+  signUpButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (password.value.length < 6) {
       passwordRepeat.classList.add("border-danger");
-      alert.innerText = "Passwords Must Match!";
-    } else {
+      password.classList.add("border-danger");
+      error.innerText = "Password must be at least 6 characters.";
+    } else if (passwordRepeat.value != password.value) {
+      passwordRepeat.classList.add("border-danger");
+      error.innerText = "Passwords Must Match!";
+    } else if (passwordRepeat.value === password.value) {
+      password.classList.add("border-success");
       passwordRepeat.classList.remove("border-danger");
       passwordRepeat.classList.add("border-success");
+      password.classList.remove("border-danger");
+      password.classList.add("border-success");
+      error.innerText = "";
       window.location = "#login";
     }
   });
