@@ -132,6 +132,7 @@ function reloadGame() {
       console.log(JSON.stringify(data));
       PAGE_DATA.game.points = data;
       console.log(PAGE_DATA);
+      window.location.reload();
     });
   });
 }
@@ -183,7 +184,7 @@ function scoreCounterRight(playerTwoPts) {
       console.log(PAGE_DATA.points);
     } else {
       leftButton.disabled = true;
-      nameAreaTwo.innerText = `Id: ${PAGE_DATA.game.player_1} WON`;
+      nameAreaTwo.innerText = `Id: ${PAGE_DATA.game.player_2} WON`;
     }
   });
 }
@@ -279,7 +280,7 @@ function finishFreestyle() {
 }
 finishFreestyle();
 
-window.location = "#home";
+// window.location = "#home";
 
 signUp();
 login();
