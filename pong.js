@@ -136,6 +136,7 @@ function reloadGame() {
     });
   });
 }
+reloadGame();
 
 function postGameScores(url = "", data = {}) {
   return fetch(url, {
@@ -149,24 +150,35 @@ function postGameScores(url = "", data = {}) {
 }
 
 function scoreCounter(playerOnePts) {
+  PAGE_DATA.points = [];
   var leftButton = document.getElementById("leftBtn");
+  var rightBtn = document.getElementById("rightBtn");
+
   var topTextArea = document.getElementById("scoreHeader");
   leftButton.addEventListener("click", function() {
     if (playerOnePts < 10) {
       topTextArea.innerText = playerOnePts = playerOnePts + 1;
+      PAGE_DATA.points.push(PAGE_DATA.game.player_1);
+      console.log(PAGE_DATA.points);
+    } else {
+      rightBtn.disabled = true;
     }
-    console.log(PAGE_DATA.game);
   });
 }
 
 function scoreCounterRight(playerTwoPts) {
+  PAGE_DATA.points = [];
   var rightBtn = document.getElementById("rightBtn");
+  var leftButton = document.getElementById("leftBtn");
   var bottmTextArea = document.getElementById("scoreFooter");
   rightBtn.addEventListener("click", function() {
     if (playerTwoPts < 10) {
       bottmTextArea.innerText = playerTwoPts = playerTwoPts + 1;
+      PAGE_DATA.points.push(PAGE_DATA.game.player_2);
+      console.log(PAGE_DATA.points);
+    } else {
+      leftButton.disabled = true;
     }
-    console.log(PAGE_DATA.game);
   });
 }
 
@@ -208,6 +220,7 @@ var player1Points = 0;
 
 function freeStylePlay(player1Points) {
   var leftButton = document.getElementById("lBtn");
+  var rightButton = document.getElementById("rBtn");
   var topTextArea = document.getElementById("scoreHeaders");
   var nameOne = document.getElementById("nameOneArea");
   var nameInputOne = document.getElementById("freestyleInputOne");
@@ -219,8 +232,11 @@ function freeStylePlay(player1Points) {
     if (player1Points <= 9) {
       nameOne.innerText = nameInputOne.value;
       nameInputOne.style.display = "none";
-    } else winnerAreaOne.innerText = `${nameInputOne.value} WINS!`;
-    document.window.reload();
+    } else {
+      winnerAreaOne.innerText = `${nameInputOne.value} WINS!`;
+      rightButton.disabled = true;
+      document.window.reload();
+    }
   });
 }
 freeStylePlay(player1Points);
@@ -229,6 +245,7 @@ var player2Points = 0;
 
 function freeStylePlayTwo(player2Points) {
   var rightButton = document.getElementById("rBtn");
+  var leftButton = document.getElementById("lBtn");
   var topTextArea = document.getElementById("scoreFooters");
   var nameTwo = document.getElementById("nameTwoArea");
   var nameInputTwo = document.getElementById("freestyleInputTwo");
@@ -242,6 +259,7 @@ function freeStylePlayTwo(player2Points) {
       nameInputTwo.style.display = "none";
     } else {
       winnerArea.innerText = `${nameInputTwo.value} WINS!`;
+      leftButton.disabled = true;
     }
   });
 }
@@ -263,4 +281,3 @@ seeUsers();
 startingGame();
 scoreCounter(playerOnePts);
 scoreCounterRight(playerTwoPts);
-reloadGame();
