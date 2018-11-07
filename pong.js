@@ -1,6 +1,6 @@
 var PAGE_DATA = {};
-var n = 0;
-var r = 0;
+var playerOnePts = 0;
+var playerTwoPts = 0;
 
 function signUp() {
   btn = document.getElementById("signUpBtn");
@@ -67,6 +67,28 @@ function postGame(url = "", data = {}) {
   }).then(response => response.json());
 }
 
+function seeUsers() {
+  btn = document.getElementById("userBtn");
+  users = document.getElementById("userList");
+  scoring = document.getElementById("scoreCard");
+  btn.addEventListener("click", function() {
+    seeData("https://bcca-pingpong.herokuapp.com/api/users/").then(data => {
+      console.log(JSON.stringify(data));
+      PAGE_DATA.users = data;
+      PAGE_DATA.users.forEach(user => {
+        document.getElementById("playerForms").hidden = false;
+        document.getElementById("startGameBtn").hidden = false;
+
+        users.hidden = false;
+        users.innerText += `ID: ${user.id} \n\tUser: ${user.username}\n\n`;
+        btn.style.display = "none";
+        scoring.style.display = "block";
+      });
+      console.log(PAGE_DATA);
+    });
+  });
+}
+
 function startingGame() {
   var playerOne = document.getElementById("playerOneId").value;
   var playerTwo = document.getElementById("playerTwoId").value;
@@ -115,46 +137,6 @@ function reloadGame() {
   });
 }
 
-function seeUsers() {
-  btn = document.getElementById("userBtn");
-  users = document.getElementById("userList");
-  scoring = document.getElementById("scoreCard");
-  btn.addEventListener("click", function() {
-    seeData("https://bcca-pingpong.herokuapp.com/api/users/").then(data => {
-      console.log(JSON.stringify(data));
-      PAGE_DATA.users = data;
-      PAGE_DATA.users.forEach(user => {
-        document.getElementById("playerForms").hidden = false;
-        document.getElementById("startGameBtn").hidden = false;
-
-        users.hidden = false;
-        users.innerText += `ID: ${user.id} \n\tUser: ${user.username}\n\n`;
-        btn.style.display = "none";
-        scoring.style.display = "block";
-      });
-      console.log(PAGE_DATA);
-    });
-  });
-}
-
-function scoreCounter(n) {
-  var leftButton = document.getElementById("leftBtn");
-  var topTextArea = document.getElementById("scoreHeader");
-  leftButton.addEventListener("click", function() {
-    topTextArea.innerText = n = n + 1;
-  });
-}
-
-function scoreCounterRight(r) {
-  var rightBtn = document.getElementById("rightBtn");
-  var bottmTextArea = document.getElementById("scoreFooter");
-  rightBtn.addEventListener("click", function() {
-    bottmTextArea.innerText = r = r + 1;
-    PAGE_DATA.game.points.push(player_1);
-    console.log(PAGE_DATA.game.points);
-  });
-}
-
 function postGameScores(url = "", data = {}) {
   return fetch(url, {
     method: "PUT",
@@ -164,6 +146,28 @@ function postGameScores(url = "", data = {}) {
     },
     body: JSON.stringify(data)
   }).then(response => response.json());
+}
+
+function scoreCounter(playerOnePts) {
+  var leftButton = document.getElementById("leftBtn");
+  var topTextArea = document.getElementById("scoreHeader");
+  leftButton.addEventListener("click", function() {
+    if (playerOnePts < 10) {
+      topTextArea.innerText = playerOnePts = playerOnePts + 1;
+    }
+    console.log(PAGE_DATA.game);
+  });
+}
+
+function scoreCounterRight(playerTwoPts) {
+  var rightBtn = document.getElementById("rightBtn");
+  var bottmTextArea = document.getElementById("scoreFooter");
+  rightBtn.addEventListener("click", function() {
+    if (playerTwoPts < 10) {
+      bottmTextArea.innerText = playerTwoPts = playerTwoPts + 1;
+    }
+    console.log(PAGE_DATA.game);
+  });
 }
 
 function showingWelcomeHeader() {
@@ -200,48 +204,50 @@ function isPasswordValid() {
 }
 isPasswordValid();
 
-var h = 0;
+var player1Points = 0;
 
-function freeStylePlay(h) {
+function freeStylePlay(player1Points) {
   var leftButton = document.getElementById("lBtn");
   var topTextArea = document.getElementById("scoreHeaders");
   var nameOne = document.getElementById("nameOneArea");
   var nameInputOne = document.getElementById("freestyleInputOne");
   var winnerAreaOne = document.querySelector(".winner");
   leftButton.addEventListener("click", function() {
-    if (h <= 9) {
-      topTextArea.innerText = h = h + 1;
+    if (player1Points < 10) {
+      topTextArea.innerText = player1Points = player1Points + 1;
+    }
+    if (player1Points <= 9) {
       nameOne.innerText = nameInputOne.value;
       nameInputOne.style.display = "none";
-    } else if (h > 9) {
-      winnerAreaOne.innerText = `${nameInputOne.value} WIN(S)!`;
-      document.window.reload();
-    }
+    } else winnerAreaOne.innerText = `${nameInputOne.value} WINS!`;
+    document.window.reload();
   });
 }
-freeStylePlay(h);
+freeStylePlay(player1Points);
 
-var g = 0;
+var player2Points = 0;
 
-function freeStylePlayTwo(g) {
+function freeStylePlayTwo(player2Points) {
   var rightButton = document.getElementById("rBtn");
   var topTextArea = document.getElementById("scoreFooters");
   var nameTwo = document.getElementById("nameTwoArea");
   var nameInputTwo = document.getElementById("freestyleInputTwo");
   var winnerArea = document.querySelector(".winner");
   rightButton.addEventListener("click", function() {
-    if (g <= 9) {
-      topTextArea.innerText = g = g + 1;
+    if (player2Points < 10) {
+      topTextArea.innerText = player2Points = player2Points + 1;
+    }
+    if (player2Points <= 9) {
       nameTwo.innerText = nameInputTwo.value;
       nameInputTwo.style.display = "none";
-    } else if (g <= 11) {
-      winnerArea.innerText = `${nameInputTwo.value} WIN(S)!`;
+    } else {
+      winnerArea.innerText = `${nameInputTwo.value} WINS!`;
     }
   });
 }
-freeStylePlayTwo(g);
+freeStylePlayTwo(player2Points);
 
-function finishFreestyle(h, g) {
+function finishFreestyle() {
   var btton = document.getElementById("finishButton");
   btton.addEventListener("click", function() {
     location.reload();
@@ -255,6 +261,6 @@ signUp();
 login();
 seeUsers();
 startingGame();
-scoreCounter(n);
-scoreCounterRight(r);
+scoreCounter(playerOnePts);
+scoreCounterRight(playerTwoPts);
 reloadGame();
