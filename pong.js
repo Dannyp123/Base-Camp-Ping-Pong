@@ -90,16 +90,15 @@ function seeUsers() {
 }
 
 function startingGame() {
-  var playerOne = document.getElementById("playerOneId").value;
-  var playerTwo = document.getElementById("playerTwoId").value;
   var startBtn = document.getElementById("startGameBtn");
-  var topTextArea = document.getElementById("usernameOneArea");
-  var bottmTextArea = document.getElementById("usernameTwoArea");
-
-  PAGE_DATA.player_1 = playerOne;
-  PAGE_DATA.player_2 = playerTwo;
 
   startBtn.addEventListener("click", function() {
+    var playerOne = document.getElementById("playerOneId").value;
+    var playerTwo = document.getElementById("playerTwoId").value;
+    PAGE_DATA.player_1 = playerOne;
+    PAGE_DATA.player_2 = playerTwo;
+    var topTextArea = document.getElementById("usernameOneArea");
+    var bottmTextArea = document.getElementById("usernameTwoArea");
     postGame("https://bcca-pingpong.herokuapp.com/api/new-game/", {
       player_1: playerOne,
       player_2: playerTwo
@@ -153,15 +152,18 @@ function scoreCounter(playerOnePts) {
   PAGE_DATA.points = [];
   var leftButton = document.getElementById("leftBtn");
   var rightBtn = document.getElementById("rightBtn");
+  var nameAreaOne = document.getElementById("winner");
 
   var topTextArea = document.getElementById("scoreHeader");
   leftButton.addEventListener("click", function() {
     if (playerOnePts < 10) {
       topTextArea.innerText = playerOnePts = playerOnePts + 1;
       PAGE_DATA.points.push(PAGE_DATA.game.player_1);
+      console.log(PAGE_DATA.game.player_1);
       console.log(PAGE_DATA.points);
     } else {
       rightBtn.disabled = true;
+      nameAreaOne.innerText = `Id: ${PAGE_DATA.game.player_1} WON`;
     }
   });
 }
@@ -170,14 +172,18 @@ function scoreCounterRight(playerTwoPts) {
   PAGE_DATA.points = [];
   var rightBtn = document.getElementById("rightBtn");
   var leftButton = document.getElementById("leftBtn");
+  var nameAreaTwo = document.getElementById("winner");
+
   var bottmTextArea = document.getElementById("scoreFooter");
   rightBtn.addEventListener("click", function() {
     if (playerTwoPts < 10) {
       bottmTextArea.innerText = playerTwoPts = playerTwoPts + 1;
       PAGE_DATA.points.push(PAGE_DATA.game.player_2);
+      console.log(PAGE_DATA.game.player_2);
       console.log(PAGE_DATA.points);
     } else {
       leftButton.disabled = true;
+      nameAreaTwo.innerText = `Id: ${PAGE_DATA.game.player_1} WON`;
     }
   });
 }
