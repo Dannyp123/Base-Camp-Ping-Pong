@@ -41,7 +41,6 @@ function login() {
         console.log(JSON.stringify(data));
         PAGE_DATA.token = data.token;
         showingWelcomeHeader();
-        window.location = "#profile";
       })
       .catch(error => console.error(error));
   });
@@ -198,10 +197,10 @@ function showingWelcomeHeader() {
 function isPasswordValid() {
   var password = document.getElementById("passwordSignup");
   var passwordRepeat = document.getElementById("passwordRepeatSignUp");
-  var signUpButton = document.getElementById("signUpBtn");
+  var signUpButton = document.getElementById("signUpForms");
   var error = document.getElementById("errorMessage");
 
-  signUpButton.addEventListener("click", function(e) {
+  signUpButton.addEventListener("submit", function(e) {
     e.preventDefault();
     if (password.value.length < 6) {
       passwordRepeat.classList.add("border-danger");
@@ -279,6 +278,17 @@ function finishFreestyle() {
   });
 }
 finishFreestyle();
+
+function loginValidation() {
+  var login_input = document.getElementById("passwordLogin");
+  var login_inputUsername = document.getElementById("usernameLogin");
+  var submittingLogin = document.getElementById("loginBtn");
+  login_input.addEventListener("input", function() {
+    if (login_input.value === "") {
+      submittingLogin.disabled = true;
+    } else submittingLogin.disabled = false;
+  });
+}
 
 // window.location = "#home";
 
