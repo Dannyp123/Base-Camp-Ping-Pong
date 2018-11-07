@@ -22,7 +22,7 @@
         <div class='d-flex justify-content-center pr-3 pl-3'>
             <a href='#home' class='nav-buttons mr-3'>Home</a>
             <a href='#signup' class='nav-buttons mr-3'>Sign-Up</a>
-            <a href='#login' class='nav-buttons mr-3'>Log-In</a>
+            <a href='#login' id="loginLink" class='nav-buttons mr-3'>Log-In</a>
             <a href='#profile' class='nav-buttons mr-3'>Profile</a>
             <a href='#free' class='nav-buttons mr-3'>Freestyle</a>
         </div>
@@ -81,7 +81,7 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="passwordLogin" placeholder="Password" required>
                 </div>
-                <button id='loginBtn' onsubmit="seeUsers()" type="submit" class="btn btn-primary">Submit</button>
+                <button id='loginBtn' onsubmit="seeUsers()" type="submit" class="btn btn-primary submitBtn">Submit</button>
             </form>
         </div>
     </section>
@@ -141,7 +141,7 @@
             </div>
             <div>
                 <b>
-                    <h4 class="winner text-center p-5"></h4>
+                    <h4 class="winner text-center p-4"></h4>
                 </b>
             </div>
             <div class="finishBtn">
