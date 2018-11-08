@@ -1,6 +1,7 @@
-#pingpong-nav {
+.bg-custom {
   background-image: url(https://cdn.anovaculinary.com/wp-content/uploads/2017/06/IMG_8281.jpg);
   background-color: lightgray;
+  border-bottom: 1px solid black;
 }
 
 .nav-buttons {
