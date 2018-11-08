@@ -195,19 +195,27 @@ function showingWelcomeHeader() {
 }
 
 function loginValidation() {
-  var passwordInput = document.getElementById("passwordLogin");
+  var password_input = document.getElementById("passwordLogin");
+  var login_inputUsername = document.getElementById("usernameLogin");
   var submittingLogin = document.getElementById("loginBtn");
   var validationAreaPass = document.getElementById("loginPasswordErrorMessage");
   submittingLogin.disabled = true;
-  passwordInput.addEventListener("input", function() {
-    if (passwordInput.value === "") {
+  password_input.addEventListener("input", function() {
+    if (password_input.value === "") {
       submittingLogin.disabled = true;
-      validationAreaPass.innerText = "Must be a valid Password!";
+      validationAreaPass.innerText = "Must enter a valid Password!";
     } else {
       submittingLogin.disabled = false;
       submittingLogin.addEventListener("click", function() {
         window.location = "#profile";
       });
+    }
+  });
+  login_inputUsername.addEventListener("input", function() {
+    if (login_inputUsername.value === "") {
+      submittingLogin.disabled = true;
+    } else {
+      submittingLogin.disabled = false;
     }
   });
 }
