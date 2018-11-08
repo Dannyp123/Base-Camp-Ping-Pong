@@ -50,17 +50,17 @@
                 <hr class='border-secondary'>
                 <div class="form-group">
                     <label for="signUpUsername">Username</label>
-                    <input type="text" class="form-control text-success" id="usernameSignUp" required aria-describedby="emailHelp"
+                    <input type="text" class="form-control text-success" autocomplete="off" id="usernameSignUp" required aria-describedby="emailHelp"
                         placeholder="Enter Username">
                 </div>
                 <div class="form-group">
                     <label for="signUpPassword">Password</label>
-                    <input type="password" class="form-control text-success border" id="passwordSignup" required
+                    <input type="password" class="form-control text-success border"  autocomplete="off" id="passwordSignup" required
                         placeholder="Password">
                 </div>
                 <div class="form-group">
                     <label for="signUpPasswordRepeat">Password Confirm</label>
-                    <input type="password" class="form-control border" id="passwordRepeatSignUp" required placeholder="Password">
+                    <input type="password" class="form-control border" id="passwordRepeatSignUp"  autocomplete="off"  placeholder="Password" required>
                     <p class="errorMessageArea pt-3"><b id="errorMessage"></b></p>
                 </div>
                 <button id="signUpBtn" type="submit" class="btn btn-primary">Submit</button>
@@ -74,14 +74,16 @@
                 <hr class='border-secondary'>
                 <div class="form-group">
                     <label for="exampleInputUsername1">Username</label>
-                    <input type="text" class="form-control" id="usernameLogin" aria-describedby="emailHelp" placeholder="Enter Username"
+                    <input type="text" class="form-control" id="usernameLogin"  autocomplete="off" aria-describedby="emailHelp" placeholder="Enter Username"
                         required>
+                        <p class="loginErrorMessageArea pt-3"><b id="loginErrorMessage"></b></p>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="passwordLogin" placeholder="Password" required>
+                    <input type="password" class="form-control" id="passwordLogin" autocomplete="off" placeholder="Password" required>
+                    <p class="loginPasswordErrorMessageArea pt-3"><b id="loginPasswordErrorMessage"></b></p>
                 </div>
-                <button id='loginBtn' type="submit" class="btn btn-primary submitBtn">Submit</button>
+                <button id='loginBtn' type="submit" class="btn btn-primary submitBtn" >Submit</button>
             </form>
         </div>
     </section>
@@ -91,8 +93,8 @@
         </div>
         <div class="d-flex justify-content-center">
             <form id='playerForms' hidden class="playerForms">
-                <input id="playerOneId" class="playeroneInput mr-2" type="text" placeholder="Player 1 ID" required>
-                <input id="playerTwoId" class="playertwoInput" type="text" placeholder="Player 2 ID" required>
+                <input id="playerOneId" class="playeroneInput mr-2" type="text" placeholder="Player 1 ID" autocomplete="off" required>
+                <input id="playerTwoId" class="playertwoInput" type="text" placeholder="Player 2 ID" autocomplete="off" required>
             </form>
         </div>
         <div class="goButton mt-2">
@@ -124,11 +126,11 @@
         <div class="freeSyle">
             <form class="d-flex justify-content-between">
                 <div>
-                    <input class="m-2 text-center inputOne" id="freestyleInputOne" type="text" placeholder="Player 1"
+                    <input class="m-2 text-center inputOne" id="freestyleInputOne" autocomplete="off" type="text" placeholder="Player 1"
                         required>
                 </div>
                 <div>
-                    <input class="m-2 text-center inputTwo" id="freestyleInputTwo" type="text" placeholder="Player 2"
+                    <input class="m-2 text-center inputTwo" id="freestyleInputTwo" autocomplete="off" type="text" placeholder="Player 2"
                         required>
                 </div>
             </form>
