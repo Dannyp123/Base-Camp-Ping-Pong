@@ -194,6 +194,25 @@ function showingWelcomeHeader() {
   welcomeArea.innerText = `Welcome ${loginInput}`;
 }
 
+function loginValidation() {
+  var passwordInput = document.getElementById("passwordLogin");
+  var submittingLogin = document.getElementById("loginBtn");
+  var validationAreaPass = document.getElementById("loginPasswordErrorMessage");
+  submittingLogin.disabled = true;
+  passwordInput.addEventListener("input", function() {
+    if (passwordInput.value === "") {
+      submittingLogin.disabled = true;
+      validationAreaPass.innerText = "Must be a valid Password!";
+    } else {
+      submittingLogin.disabled = false;
+      submittingLogin.addEventListener("click", function() {
+        window.location = "#profile";
+      });
+    }
+  });
+}
+loginValidation();
+
 function isPasswordValid() {
   var password = document.getElementById("passwordSignup");
   var passwordRepeat = document.getElementById("passwordRepeatSignUp");
@@ -279,18 +298,7 @@ function finishFreestyle() {
 }
 finishFreestyle();
 
-function loginValidation() {
-  var login_input = document.getElementById("passwordLogin");
-  var login_inputUsername = document.getElementById("usernameLogin");
-  var submittingLogin = document.getElementById("loginBtn");
-  login_input.addEventListener("input", function() {
-    if (login_input.value === "") {
-      submittingLogin.disabled = true;
-    } else submittingLogin.disabled = false;
-  });
-}
-
-// window.location = "#home";
+window.location = "#home";
 
 signUp();
 login();
